@@ -17,7 +17,6 @@
 // 4500040443327765
 
 
-
 $feedback = "";
 $success_message = "Thank you for your donation!";
 $error_message = "* There was an error with your card. Please try again.";
@@ -28,14 +27,14 @@ $card_num = "";
 $donation_amount = "";
 $mc_regex = "/5[1-5][0-9]{14}/";
 $visa_regex = "/4[0-9]{12}([0-9]{3})?([0-9]{3})?/";
+$donation_regex = "/^[1-9]\d*$/";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $card_type = $_POST["credit"];
     $card_num = $_POST["card-num"];
     $donation_amount = $_POST["amount"];
 
-    if ($donation_amount != 0) {
-
+    if (preg_match($donation_regex, $donation_amount)) {
 
   if (strlen($card_num) < 100) {
     
